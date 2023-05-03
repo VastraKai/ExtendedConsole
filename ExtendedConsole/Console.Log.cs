@@ -176,13 +176,12 @@ public static partial class Console
             // Trim blank lines from the start and end of the message.
             if (config.Value.HideBlankLines) message = message?.Trim();
             string? prefixStr = GetPrefixString(source, logLevel);
-            if (config.Value.AddShortcuts && config.Value.AppendReset && message != null) message += "&r&+";
             if (config.Value.AddShortcuts) message = AddColors(message);
             if (config.Value.AddShortcutsToPrefix) prefixStr = AddColors(prefixStr);
             if (config.Value.AddPrefixToNewLines) message = message?.Replace("\n", $"\n{prefixStr} ");
-            Console.Write(config.Value.AddPrefix ? $"{prefixStr} {message}" : message);
-            if (config.Value.AppendReset) Console.Write(R + ColorPositive);
-            Console.WriteLine();
+            string? text = config.Value.AddPrefix ? $"{prefixStr} {message}" : message;
+            if (config.Value.AppendReset) text += R + ColorPositive;
+            Console.Write(text + "\n");
         }
         public static void Write(string? source, string? message, LogLevel logLevel = LogLevel.Info,
             MessageConfig? config = null)
@@ -193,15 +192,16 @@ public static partial class Console
             // Trim blank lines from the start and end of the message.
             if (config.Value.HideBlankLines) message = message?.Trim();
             string? prefixStr = GetPrefixString(source, logLevel);
-            if (config.Value.AddShortcuts && config.Value.AppendReset && message != null) message += "&r&+";
             if (config.Value.AddShortcuts) message = AddColors(message);
             if (config.Value.AddShortcutsToPrefix) prefixStr = AddColors(prefixStr);
             if (config.Value.AddPrefixToNewLines) message = message?.Replace("\n", $"\n{prefixStr} ");
-            Console.Write(config.Value.AddPrefix ? $"{prefixStr} {message}" : message);
+            string? text = config.Value.AddPrefix ? $"{prefixStr} {message}" : message;
+            if (config.Value.AppendReset) text += R + ColorPositive;
+            Console.Write(text);
         }
 
 
-        public static void ErrorWriteLine(string? source, string? message, LogLevel logLevel = LogLevel.Info,
+        public static void ErrorWriteLine(string? source, string? message, LogLevel logLevel = LogLevel.Error,
             MessageConfig? config = null)
         {
             config ??= DefaultMessageConfig;
@@ -210,14 +210,14 @@ public static partial class Console
             // Trim blank lines from the start and end of the message.
             if (config.Value.HideBlankLines) message = message?.Trim();
             string? prefixStr = GetPrefixString(source, logLevel);
-            if (config.Value.AddShortcuts && config.Value.AppendReset && message != null) message += "&r&+";
             if (config.Value.AddShortcuts) message = AddColors(message);
             if (config.Value.AddShortcutsToPrefix) prefixStr = AddColors(prefixStr);
             if (config.Value.AddPrefixToNewLines) message = message?.Replace("\n", $"\n{prefixStr} ");
-            Error.Write(config.Value.AddPrefix ? $"{prefixStr} {message}" : message);
-            Error.WriteLine();
+            string? text = config.Value.AddPrefix ? $"{prefixStr} {message}" : message;
+            if (config.Value.AppendReset) text += R + ColorPositive;
+            Error.Write(text + "\n");
         }
-        public static void ErrorWrite(string? source, string? message, LogLevel logLevel = LogLevel.Info,
+        public static void ErrorWrite(string? source, string? message, LogLevel logLevel = LogLevel.Error,
             MessageConfig? config = null)
         {
             config ??= DefaultMessageConfig;
@@ -226,12 +226,12 @@ public static partial class Console
             // Trim blank lines from the start and end of the message.
             if (config.Value.HideBlankLines) message = message?.Trim();
             string? prefixStr = GetPrefixString(source, logLevel);
-            if (config.Value.AddShortcuts && config.Value.AppendReset && message != null) message += "&r&+";
             if (config.Value.AddShortcuts) message = AddColors(message);
             if (config.Value.AddShortcutsToPrefix) prefixStr = AddColors(prefixStr);
             if (config.Value.AddPrefixToNewLines) message = message?.Replace("\n", $"\n{prefixStr} ");
-            Error.Write(config.Value.AddPrefix ? $"{prefixStr} {message}" : message);
-            if (config.Value.AppendReset) Error.Write(R + ColorPositive);
+            string? text = config.Value.AddPrefix ? $"{prefixStr} {message}" : message;
+            if (config.Value.AppendReset) text += R + ColorPositive;
+            Error.Write(text);
         }
 
         public static string GetPrefixString(string? source, LogLevel logLevel)
