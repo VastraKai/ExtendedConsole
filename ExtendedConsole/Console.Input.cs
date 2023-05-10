@@ -1,5 +1,4 @@
 // ReSharper disable CheckNamespace
-
 using System.Runtime.Versioning;
 using System.Text;
 
@@ -19,6 +18,15 @@ public static partial class Console
         public KeyOutput() { }
         public ConsoleKey Key;
         public string? Output;
+    }
+    [SupportedOSPlatform("windows")]
+    public static void Pause(string message = "Press any key to continue...", bool clearLine = true)
+    {
+        if (message.Contains('&')) message = Log.AddColors(message) ?? message;
+        Console.Write($"{message}");
+        Console.ReadKey(true);
+        if (clearLine) Console.Write($"\r{new string(' ', message.Length)}\r");
+        else Console.WriteLine();
     }
     [SupportedOSPlatform("windows")]
     public static ConsoleKey ReadKey(string source, string message, KeyOutput[] keyOutputs)
