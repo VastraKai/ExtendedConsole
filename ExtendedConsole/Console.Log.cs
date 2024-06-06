@@ -269,7 +269,7 @@ public static partial class Console
         
         public static bool Confirm(string title, string message)
         {
-            Console.WriteLine(title, message);
+            Console.Write(title, message + " ");
             // use ReadKey
             ConsoleKeyInfo key = Console.ReadKey(true);
             while (key.Key != ConsoleKey.Y && key.Key != ConsoleKey.N)
