@@ -266,5 +266,20 @@ public static partial class Console
         }
 
         public static MessageConfig DefaultMessageConfig = new();
+        
+        public static bool Confirm(string title, string message)
+        {
+            Console.WriteLine(title, message);
+            // use ReadKey
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            while (key.Key != ConsoleKey.Y && key.Key != ConsoleKey.N)
+            {
+                key = Console.ReadKey(true);
+            }
+            
+            Console.WriteLine(key.Key == ConsoleKey.Y ? "YES" : "NO");
+            
+            return key.Key == ConsoleKey.Y;
+        }
     }
 }
