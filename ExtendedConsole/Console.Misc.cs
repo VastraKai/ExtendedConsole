@@ -4,6 +4,23 @@ namespace ExtendedConsole;
 // Extended from ConsoleBase
 public static partial class Console
 {
+    
+    /// <summary>
+    /// Clears the console below the specified y value.
+    /// </summary>
+    /// <param name="y">The y value to clear below.</param>
+    public static void ClearBelow(int y)
+    {
+        int currentY = CursorTop;
+        int consoleHeight = WindowHeight;
+        for (int i = currentY; i < consoleHeight; i++)
+        {
+            SetCursorPosition(0, i);
+            Write(new string(' ', WindowWidth));
+        }
+        SetCursorPosition(0, currentY);
+    }
+    
     /// <summary>
     /// A constant character to be used with escape codes.
     /// </summary>
