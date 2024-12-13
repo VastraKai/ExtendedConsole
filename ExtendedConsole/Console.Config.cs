@@ -44,10 +44,12 @@ public static partial class Console
             // If windows
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
+                #if WINDOWS
                 nint handle = Api.GetStdHandle(StdOutputHandle);
                 Api.GetConsoleMode(handle, out uint mode);
                 mode |= EnableVirtualTerminalProcessing;
                 Api.SetConsoleMode(handle, mode);
+                #endif
             } else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 // Enable VT processing
@@ -60,14 +62,18 @@ public static partial class Console
 
         public static void HideConsole()
         {
+#if WINDOWS
             nint handle = Api.GetConsoleWindow();
             Api.SetWindowState(handle, ConsoleVisibility.Hidden);
+#endif
         }
 
         public static void ShowConsole()
         {
+#if WINDOWS
             nint handle = Api.GetConsoleWindow();
             Api.SetWindowState(handle, ConsoleVisibility.Shown);
+#endif
         }
     }
 }

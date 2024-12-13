@@ -5,6 +5,7 @@ public static partial class Console
 {
     public static class Api
     {
+#if WINDOWS
         [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern nint GetStdHandle(int nStdHandle);
 
@@ -21,5 +22,6 @@ public static partial class Console
         internal static extern bool ShowWindow(nint hWnd, int nCmdShow);
 
         internal static void SetWindowState(nint hWnd, Config.ConsoleVisibility nCmdShow) => ShowWindow(hWnd, (int)nCmdShow);
+#endif
     }
 }
