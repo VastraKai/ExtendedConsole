@@ -1,4 +1,7 @@
 // ReSharper disable once CheckNamespace
+
+using System.Runtime.InteropServices;
+
 namespace ExtendedConsole;
 public static partial class Console
 {
@@ -37,10 +40,20 @@ public static partial class Console
             SetError(System.Console.Error);
             SetOut(System.Console.Out);
             SetIn(System.Console.In);
-            nint handle = Api.GetStdHandle(StdOutputHandle);
-            Api.GetConsoleMode(handle, out uint mode);
-            mode |= EnableVirtualTerminalProcessing;
-            Api.SetConsoleMode(handle, mode);
+            
+            // If windows
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                nint handle = Api.GetStdHandle(StdOutputHandle);
+                Api.GetConsoleMode(handle, out uint mode);
+                mode |= EnableVirtualTerminalProcessing;
+                Api.SetConsoleMode(handle, mode);
+            } else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                // Enable VT processing
+                System.Console.WriteLine("\x1b[?1049h");
+            }
+
             Log.RegisterDefaultColorShortcuts();
             
         }
