@@ -5,7 +5,8 @@ public static partial class Console
 {
     public static class Api
     {
-#if WINDOWS
+#if !WINDOWS
+#else
         [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern nint GetStdHandle(int nStdHandle);
 

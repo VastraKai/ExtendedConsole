@@ -44,7 +44,8 @@ public static partial class Console
             // If windows
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                #if WINDOWS
+                #if !WINDOWS
+                #else
                 nint handle = Api.GetStdHandle(StdOutputHandle);
                 Api.GetConsoleMode(handle, out uint mode);
                 mode |= EnableVirtualTerminalProcessing;
@@ -62,7 +63,8 @@ public static partial class Console
 
         public static void HideConsole()
         {
-#if WINDOWS
+#if !WINDOWS
+#else
             nint handle = Api.GetConsoleWindow();
             Api.SetWindowState(handle, ConsoleVisibility.Hidden);
 #endif
@@ -70,7 +72,8 @@ public static partial class Console
 
         public static void ShowConsole()
         {
-#if WINDOWS
+#if !WINDOWS
+#else
             nint handle = Api.GetConsoleWindow();
             Api.SetWindowState(handle, ConsoleVisibility.Shown);
 #endif
