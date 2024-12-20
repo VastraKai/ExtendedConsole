@@ -53,8 +53,6 @@ public static partial class Console
                 #endif
             } else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                // Enable VT processing
-                System.Console.WriteLine("\x1b[?1049h");
             }
 
             Log.RegisterDefaultColorShortcuts();
