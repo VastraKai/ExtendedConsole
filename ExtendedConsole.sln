@@ -1,4 +1,4 @@
-﻿
+// hey guys i would just like to make a quick note that everything you're seeing here is made by copilot﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedConsole", "ExtendedConsole\ExtendedConsole.csproj", "{B2DD1143-B1CE-47BF-8EE6-A84E8AAA50ED}"
 EndProject
