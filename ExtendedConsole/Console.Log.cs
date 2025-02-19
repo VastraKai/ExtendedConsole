@@ -1,5 +1,7 @@
 // ReSharper disable once CheckNamespace
 
+using System.Text.RegularExpressions;
+
 namespace ExtendedConsole;
 
 /// <summary>
@@ -57,7 +59,7 @@ public struct MessageConfig
 
 public static partial class Console
 {
-    public static class Log
+    public static partial class Log
     {
         public const string R = "\x001B[0m";
         public static readonly string PrefixColor = Console.EscColor(0.0f, 1.0f, 1.0f);
@@ -281,5 +283,13 @@ public static partial class Console
             
             return key.Key == ConsoleKey.Y;
         }
+
+        public static string RemoveEscapes(string str)
+        {
+            return RemoveEscapesRegex().Replace(str, "");
+        }
+
+        [GeneratedRegex(@"\x001B\[[0-9;]*[A-Za-z]")]
+        private static partial Regex RemoveEscapesRegex();
     }
 }
