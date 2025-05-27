@@ -69,9 +69,10 @@ public static partial class Console
     /// <summary>
     /// Waits for the user to press the enter key.
     /// </summary>
-    public static void WaitForEnter(string message = "Press enter to continue...")
+    public static void WaitForEnter(string message = "Press enter to continue...", bool useLog = false)
     {
-        Console.Log.Write("Console", message, LogLevel.Input);
+        if (useLog) Console.Log.Write("Console", message, LogLevel.Input);
+        else Console.Write(message);
         ConsoleKey key = ConsoleKey.NoName;
         while (key != ConsoleKey.Enter)
         {
