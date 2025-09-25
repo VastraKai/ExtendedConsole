@@ -116,13 +116,13 @@ public static partial class Console
         get => System.Console.CursorVisible;
         set { try { System.Console.CursorVisible = value; } catch { } }
     }
-    [SupportedOSPlatform("windows")]
+    
     public static int CursorLeft
     {
         get => System.Console.GetCursorPosition().Left;
         set => System.Console.CursorLeft = value;
     }
-    [SupportedOSPlatform("windows")]
+    
     public static int CursorTop
     {
         get => System.Console.GetCursorPosition().Top;

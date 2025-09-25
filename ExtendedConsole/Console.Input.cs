@@ -23,10 +23,10 @@ public static partial class Console
     public static void Pause(string message = "Press any key to continue...", bool clearLine = true)
     {
         if (message.Contains('&')) message = Log.AddColors(message) ?? message;
-        Console.Write($"{message}");
-        Console.ReadKey(true);
-        if (clearLine) Console.Write($"\r{new string(' ', message.Length)}\r");
-        else Console.WriteLine();
+        Write($"{message}");
+        ReadKey(true);
+        if (clearLine) Write($"\r{new string(' ', message.Length)}\r");
+        else WriteLine();
     }
     [SupportedOSPlatform("windows")]
     public static ConsoleKey ReadKey(string source, string message, KeyOutput[] keyOutputs)
@@ -38,7 +38,7 @@ public static partial class Console
         ConsoleKey key = ConsoleKey.NoName;
         while (!acceptableKeys.Contains(key))
         {
-            key = Console.ReadKey(true).Key;
+            key = ReadKey(true).Key;
         }
         WriteLine(Log.AddColors(keyOutputs.First(ko => ko.Key == key).Output) + Log.R);
         return key;
@@ -48,7 +48,7 @@ public static partial class Console
     {
         Log.Write(source, message, LogLevel.Input);
         string? resultStr = null;
-        Console.Write(Log.ValueColor);
+        Write(Log.ValueColor);
         resultStr = hideInput ? ReadLine2(true) : ReadLine();
         Write(Log.R);
         return resultStr;

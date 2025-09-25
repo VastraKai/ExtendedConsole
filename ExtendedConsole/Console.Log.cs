@@ -60,32 +60,32 @@ public static partial class Console
     public static class Log
     {
         public const string R = "\x001B[0m";
-        public static readonly string PrefixColor = Console.EscColor(0.0f, 1.0f, 1.0f);
-        public static readonly string WarningColor = Console.EscColor(1.0f, 1.0f, 0.0f);
-        public static readonly string ErrorColor = Console.EscColor(1.0f, 0.0f, 0.0f);
-        public static readonly string ValueColor = Console.EscColor(0.0f, 0.53333333333f, 1.0f);
-        public static readonly string GreenTextColor = Console.EscColor(0.0f, 1.0f, 0.13333333333f);
-        public static readonly string BlueTextColor = Console.EscColor(0.0f, 0.33333333333f, 1.0f);
+        public static readonly string PrefixColor = EscColor(0.0f, 1.0f, 1.0f);
+        public static readonly string WarningColor = EscColor(1.0f, 1.0f, 0.0f);
+        public static readonly string ErrorColor = EscColor(1.0f, 0.0f, 0.0f);
+        public static readonly string ValueColor = EscColor(0.0f, 0.53333333333f, 1.0f);
+        public static readonly string GreenTextColor = EscColor(0.0f, 1.0f, 0.13333333333f);
+        public static readonly string BlueTextColor = EscColor(0.0f, 0.33333333333f, 1.0f);
 
         public const string GenericTextColor = R;
 
         // Minecraft colors
-        public static readonly string Color0 = Console.EscColor(0.0f, 0.0f, 0.0f); // Black
-        public static readonly string Color1 = Console.EscColor(0.0f, 0.0f, 0.666667f); // Dark Blue
-        public static readonly string Color2 = Console.EscColor(0.0f, 0.666667f, 0.0f); // Dark Green
-        public static readonly string Color3 = Console.EscColor(0.0f, 0.666667f, 0.666667f); // Dark Aqua
-        public static readonly string Color4 = Console.EscColor(0.666667f, 0.0f, 0.0f); // Dark Red
-        public static readonly string Color5 = Console.EscColor(0.666667f, 0.0f, 0.666667f); // Dark Purple
-        public static readonly string Color6 = Console.EscColor(1.0f, 0.666667f, 0.0f); // Gold
-        public static readonly string Color7 = Console.EscColor(0.666667f, 0.666667f, 0.666667f); // Gray
-        public static readonly string Color8 = Console.EscColor(0.3333333f, 0.3333333f, 0.3333333f); // Dark Gray
-        public static readonly string Color9 = Console.EscColor(0.3333333f, 0.3333333f, 1.0f); // Blue
-        public static readonly string ColorA = Console.EscColor(0.3333333f, 1.0f, 0.3333333f); // Green
-        public static readonly string ColorB = Console.EscColor(0.3333333f, 1.0f, 1.0f); // Aqua
-        public static readonly string ColorC = Console.EscColor(1.0f, 0.3333333f, 0.3333333f); // Red
-        public static readonly string ColorD = Console.EscColor(1.0f, 0.3333333f, 1.0f); // Light Purple
-        public static readonly string ColorE = Console.EscColor(1.0f, 1.0f, 0.3333333f); // Yellow
-        public static readonly string ColorF = Console.EscColor(1.0f, 1.0f, 1.0f); // White
+        public static readonly string Color0 = EscColor(0.0f, 0.0f, 0.0f); // Black
+        public static readonly string Color1 = EscColor(0.0f, 0.0f, 0.666667f); // Dark Blue
+        public static readonly string Color2 = EscColor(0.0f, 0.666667f, 0.0f); // Dark Green
+        public static readonly string Color3 = EscColor(0.0f, 0.666667f, 0.666667f); // Dark Aqua
+        public static readonly string Color4 = EscColor(0.666667f, 0.0f, 0.0f); // Dark Red
+        public static readonly string Color5 = EscColor(0.666667f, 0.0f, 0.666667f); // Dark Purple
+        public static readonly string Color6 = EscColor(1.0f, 0.666667f, 0.0f); // Gold
+        public static readonly string Color7 = EscColor(0.666667f, 0.666667f, 0.666667f); // Gray
+        public static readonly string Color8 = EscColor(0.3333333f, 0.3333333f, 0.3333333f); // Dark Gray
+        public static readonly string Color9 = EscColor(0.3333333f, 0.3333333f, 1.0f); // Blue
+        public static readonly string ColorA = EscColor(0.3333333f, 1.0f, 0.3333333f); // Green
+        public static readonly string ColorB = EscColor(0.3333333f, 1.0f, 1.0f); // Aqua
+        public static readonly string ColorC = EscColor(1.0f, 0.3333333f, 0.3333333f); // Red
+        public static readonly string ColorD = EscColor(1.0f, 0.3333333f, 1.0f); // Light Purple
+        public static readonly string ColorE = EscColor(1.0f, 1.0f, 0.3333333f); // Yellow
+        public static readonly string ColorF = EscColor(1.0f, 1.0f, 1.0f); // White
         public static readonly string StyleK = "\x001B[5m"; // Obfuscated (Jokes on you, it doesn't work!)
         public static readonly string StyleL = "\x001B[1m"; // Bold
         public static readonly string StyleM = "\x001B[9m"; // Strikethrough
@@ -269,12 +269,12 @@ public static partial class Console
         
         public static bool Confirm(string title, string message)
         {
-            Console.Log.Write(title, message + " ");
+            Write(title, message + " ");
             // use ReadKey
-            ConsoleKeyInfo key = Console.ReadKey(true);
+            ConsoleKeyInfo key = ReadKey(true);
             while (key.Key != ConsoleKey.Y && key.Key != ConsoleKey.N)
             {
-                key = Console.ReadKey(true);
+                key = ReadKey(true);
             }
             
             Console.WriteLine(key.Key == ConsoleKey.Y ? "YES" : "NO");
